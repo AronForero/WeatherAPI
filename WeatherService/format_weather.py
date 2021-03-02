@@ -31,7 +31,6 @@ def format_wind_direction(wind_degrees):
     }
     idx_wind_dir = 0 if round((wind_degrees%360)/22.5) == 16 else round((wind_degrees%360)/22.5)
     abbr_wind_dir = list(wind_directions.keys())[idx_wind_dir]
-    print(abbr_wind_dir)
     wind_dir = wind_directions[abbr_wind_dir]
 
     return wind_dir

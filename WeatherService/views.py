@@ -38,11 +38,20 @@ class WeatherViewSet(viewsets.ViewSet):
     def retrieve(self, request, *args, **kwargs):
         """Recieves the GET requests, returning the weather of the specified city
         """
+
+        # NOTE: If you want to run the application with environment variables,
+        # please uncomment the following lines of code. and comment the next 3
+        # lines of code (lines 51, 52, and 53).
         # the app id is brought with an env variable.
+        # weather_url = os.getenv('WEATHER_URL')+\
+        #     kwargs.get('city')+','+kwargs.get('country')+\
+        #     '&appid='+os.getenv('OWM_APPID')
+            # '&appid=1508a9a4840a5574c822d70ca2132032'
+
         weather_url = 'http://api.openweathermap.org/data/2.5/weather?q='+\
             kwargs.get('city')+','+kwargs.get('country')+\
-            '&appid='+os.getenv('OWM_APPID')
-            # '&appid=1508a9a4840a5574c822d70ca2132032'
+            '&appid=1508a9a4840a5574c822d70ca2132032'
+        
         weather_response = requests.get(weather_url)
         if weather_response.status_code == 404:
             raise InvalidPlace
